@@ -1,0 +1,51 @@
+# Release packages and generated patches
+/Fatalis_CQC42_Mod.zip
+/output/
+/build_report.json
+/validation_report.json
+/Fatalis_CQC42_preview.png
+*.blend1
+*.blend2
+
+# Local inspection exports; keep the chosen audio mapping
+/audio_inspection/*
+!/audio_inspection/mhw_source/
+/audio_inspection/mhw_source/*
+!/audio_inspection/mhw_source/selected_audio.json
+
+# Source inputs only
+/source/*
+!/source/swo034.obj
+!/source/swo034.mtl
+!/source/swo034_BML.PNG
+!/source/audio/
+
+# Build scripts and the parser dependencies they use
+/tools/*
+!/tools/build_mod.py
+!/tools/verify_mod.py
+!/tools/text_patch.py
+!/tools/add_text.py
+!/tools/build_audio_bank.py
+!/tools/audio_patch.py
+!/tools/add_audio.py
+!/tools/verify_audio.py
+!/tools/extract_machete_audio.py
+!/tools/package_mod.py
+!/tools/audio_reference/
+/tools/audio_reference/*
+!/tools/audio_reference/wwise_hierarchy_140.py
+!/tools/audio_reference/wwise_hierarchy_154.py
+!/tools/audio_reference/util.py
+!/tools/audio_reference/log.py
+!/tools/audio_reference/LICENSE
+!/tools/audio_reference/backend/
+/tools/audio_reference/backend/*
+!/tools/audio_reference/backend/db.py
+
+__pycache__/
+*.pyc
+*.log
+log.txt*
+.venv/
+.env

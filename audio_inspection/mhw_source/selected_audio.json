@@ -1,0 +1,28 @@
+{
+  "selection_basis": "用户指定的替换用途，不代表已确认在怪猎中的原始动作归属",
+  "source_directory": "source/audio",
+  "replacements": [
+    {
+      "purpose": "纳刀",
+      "files": ["04.ogg"],
+      "mhw_media_ids": [77872984],
+      "hd2_event": "wep_melee_machete_holster",
+      "hd2_sample_ids": [390921289, 456300776, 837256289]
+    },
+    {
+      "purpose": "气刃斩",
+      "files": ["09.ogg", "16.ogg"],
+      "mhw_media_ids": [205962053, 527611742],
+      "hd2_event": "wep_melee_machete_melee_swing",
+      "hd2_sample_ids": [29484430, 105076006, 251725878, 408995293, 460435285, 497393614]
+    },
+    {
+      "purpose": "拔刀",
+      "files": ["12.ogg"],
+      "mhw_media_ids": [353159993],
+      "hd2_event": "wep_melee_machete_draw",
+      "hd2_sample_ids": [565394934, 860185624, 954699561]
+    }
+  ],
+  "excluded_files": ["13.ogg", "14.ogg"]
+}
