@@ -2,7 +2,6 @@ import bpy,sys,os,importlib,json,math
 from pathlib import Path
 from mathutils import Vector
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-from text_patch import BANK_ID, verify_bank
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(Path(os.environ['APPDATA'])/'Blender Foundation/Blender/5.2/scripts/addons'))
 sdk=importlib.import_module('HD2SDK-CommunityEdition')
@@ -69,11 +68,9 @@ assert e.LoadedData.StateMachineRef==original_unit.LoadedData.StateMachineRef
 assert len(patch.TocDict[sdk.UnitID])==1
 assert len(patch.TocDict[sdk.MaterialID])==1
 assert len(patch.TocDict[sdk.TexID])==3
-assert len(patch.TocDict[sdk.StringID])==1
+assert not patch.TocDict.get(sdk.StringID)
 assert len(patch.TocDict[sdk.WwiseBankID])==1
-assert sum(len(v) for v in patch.TocDict.values())==7
-base=manager.LoadArchive(sdk.Global_gamepath+sdk.BaseArchiveHexID)
-text_result=verify_bank(bytes(base.GetEntry(BANK_ID,sdk.StringID).TocData),bytes(patch.GetEntry(BANK_ID,sdk.StringID).TocData))
+assert sum(len(v) for v in patch.TocDict.values())==6
 for o in bpy.data.objects:o.hide_render=o!=hero
 # Render the exported file using the same preview camera, lighting and scene settings.
 with bpy.data.libraries.load(str(ROOT/'Fatalis_CQC42.blend'),link=False) as (available,wanted):
@@ -87,8 +84,7 @@ scene.render.filepath=str(ROOT/'Fatalis_CQC42_export_verified.png');bpy.ops.rend
 result={'status':'PASS','checks':['SDK reopened the exported archive and GPU file','All 9 display/shadow meshes have expected geometry and valid indices','Material references resolve to 3 custom textures with mipmaps','Exactly 1 unit, 1 material and 3 textures in patch','Original bone and animation references retained; no physics, bones or animation entries patched','Exported model length within 2 mm of 1.5 m','Rendered from exported patch, independently of source blend'],'length_m':length,'textures':textures,'meshes':lod_results,'in_game_tested':False}
 result['checks'].append('All 9 exported meshes have the same tip-side direction as the original CQC-42')
 result['orientation']={'original_tip_side_y':original_tip_side,'meshes':orientation}
-result['checks'].append('Simplified Chinese name and description round-trip exactly; all other strings unchanged')
-result['text']=text_result
+result['checks'].append('No text resources in the patch')
 from verify_audio import verify as verify_audio
 result['audio']=verify_audio()
 (ROOT/'validation_report.json').write_text(json.dumps(result,indent=2))

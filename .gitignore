@@ -24,8 +24,6 @@
 /tools/*
 !/tools/build_mod.py
 !/tools/verify_mod.py
-!/tools/text_patch.py
-!/tools/add_text.py
 !/tools/build_audio_bank.py
 !/tools/audio_patch.py
 !/tools/add_audio.py

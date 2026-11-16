@@ -1,4 +1,4 @@
-"""Merge the generated Wwise bank into the SDK model/text patch."""
+"""Merge the generated Wwise bank into the SDK model patch."""
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]

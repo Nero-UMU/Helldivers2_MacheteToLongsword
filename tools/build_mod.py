@@ -4,7 +4,6 @@ from pathlib import Path
 from mathutils import Vector, Matrix
 import numpy as np
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-from text_patch import add_to_patch
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(Path(os.environ['APPDATA'])/'Blender Foundation/Blender/5.2/scripts/addons'))
@@ -27,7 +26,6 @@ original=arc.GetEntry(unit_id,sdk.UnitID)
 original.Load(False,True,True)
 original_objects=[o for o in bpy.data.objects if o.get('Z_ObjectID')==str(unit_id)]
 print('ORIGINAL_LOADED',len(original_objects),flush=True)
-base=manager.LoadArchive(sdk.Global_gamepath+sdk.BaseArchiveHexID)
 manager.CreatePatchFromActive('Fatalis swo034 for CQC-42')
 patch=manager.ActivePatch
 patch.UpdatePath(str(ROOT/'output/9ba626afa44a3aa3.patch_0'))
@@ -124,7 +122,6 @@ for tid in (sdk.BoneID,sdk.StateMachineID):
         assert extra.GetData()==arc.GetEntry(extra.FileID,tid).GetData()
         patch.RemoveEntry(extra.FileID,tid,ReloadUI=False)
     if tid in patch.TocDict and not patch.TocDict[tid]:del patch.TocDict[tid]
-add_to_patch(sdk,base,patch)
 from audio_patch import add_audio_bank
 add_audio_bank(sdk,patch)
 patch.ToFile()

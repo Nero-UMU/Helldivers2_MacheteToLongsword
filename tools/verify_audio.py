@@ -108,7 +108,7 @@ def verify():
                         'duration_s': len(result) / 48000, 'pcm_correlation': correlation,
                         'audible_onset_minus30db_s': onset})
     report.update({'status': 'PASS', 'decoded_from_exported_patch': decoded,
-                   'existing_payloads_preserved': 6, 'exported_patch_verified': True})
+                   'existing_payloads_preserved': 5, 'exported_patch_verified': True})
     (ROOT / 'audio_inspection/audio_validation_report.json').write_text(
         json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
     return report
